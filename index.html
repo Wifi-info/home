@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiFi Credentials</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f9;
+        }
+        .card {
+            padding: 30px;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            max-width: 400px;
+        }
+        .qr {
+            margin: 20px 0;
+        }
+        .copy-btn {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .copy-btn:hover {
+            background-color: #45a049;
+        }
+        .password-container {
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>WiFi Details</h1>
+        <p><strong>Network Name (SSID):</strong> YourWiFiName</p>
+        <div class="password-container">
+            <span><strong>Password:</strong> <span id="wifiPassword">YourPassword123</span></span>
+        </div>
+        <button class="copy-btn" onclick="copyPassword()">Copy Password</button>
+        <div class="qr">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=WIFI:S:YourWiFiName;T:WPA;P:YourPassword123;;" alt="QR Code">
+        </div>
+        <p>Scan the QR code to connect!</p>
+    </div>
+
+    <script>
+        function copyPassword() {
+            const password = document.getElementById("wifiPassword").innerText;
+            navigator.clipboard.writeText(password).then(() => {
+                alert("WiFi password copied to clipboard!");
+            }).catch(err => {
+                console.error("Failed to copy: ", err);
+            });
+        }
+    </script>
+</body>
+</html>
